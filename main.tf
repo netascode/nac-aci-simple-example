@@ -12,11 +12,11 @@ terraform {
 }
 
 provider "aci" {
-  username    = "username"
-  password    = "password"
-  url         = "https://apic.url"
-  insecure    = true
-  retries     = 4
+  username = "username"
+  password = "password"
+  url      = "https://apic.url"
+  insecure = true
+  retries  = 4
 }
 
 locals {
@@ -28,7 +28,8 @@ data "utils_yaml_merge" "model" {
 }
 
 module "tenant" {
-  source = "git::https://github.com/netascode/terraform-aci-nac-tenant.git"
+  source  = "netascode/nac-tenant/aci"
+  version = ">= 0.1.0"
 
   for_each    = toset([for tenant in lookup(local.model.apic, "tenants", {}) : tenant.name])
   model       = local.model
