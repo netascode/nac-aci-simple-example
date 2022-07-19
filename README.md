@@ -4,4 +4,4 @@ Use Terraform to operate and manage ACI infrastructure using purpose built modul
 
 ## Documentation
 
-Documentation is available ([here](https://insert.pubhub.link)).
+Documentation is available [here](https://tbd).
