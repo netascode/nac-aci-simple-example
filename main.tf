@@ -24,12 +24,12 @@ locals {
 }
 
 data "utils_yaml_merge" "model" {
-  input = concat([for file in fileset(path.module, "data/*.yaml") : file(file)], [file("${path.module}/defaults/defaults.yaml"), file("${path.module}/modules/modules.yaml")])
+  input = concat([for file in fileset(path.module, "data/*.yaml") : file(file)], [file("${path.module}/defaults/defaults.yaml")])
 }
 
 module "tenant" {
   source  = "netascode/nac-tenant/aci"
-  version = ">= 0.2.2"
+  version = "0.3.0"
 
   for_each    = toset([for tenant in lookup(local.model.apic, "tenants", {}) : tenant.name])
   model       = local.model
