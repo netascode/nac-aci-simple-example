@@ -29,7 +29,7 @@ data "utils_yaml_merge" "model" {
 
 module "tenant" {
   source  = "netascode/nac-tenant/aci"
-  version = "0.3.0"
+  version = "0.3.1"
 
   for_each    = toset([for tenant in lookup(local.model.apic, "tenants", {}) : tenant.name])
   model       = local.model
