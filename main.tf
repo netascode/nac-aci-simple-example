@@ -19,7 +19,7 @@ locals {
 
 module "tenant" {
   source  = "netascode/nac-tenant/aci"
-  version = "0.4.1"
+  version = "0.4.2"
 
   for_each    = { for tenant in try(local.model.apic.tenants, []) : tenant.name => tenant }
   model       = local.model
