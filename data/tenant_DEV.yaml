@@ -27,15 +27,9 @@ apic:
           endpoint_groups:
             - name: VLAN200
               bridge_domain: 10.1.200.0_24
-              contracts:
-                consumers:
-                  - PERMIT-TO-VLAN201
-            
+
             - name: VLAN201
               bridge_domain: 10.1.201.0_24
-              contracts:
-                providers:
-                  - PERMIT-TO-VLAN201
-            
+
             - name: VLAN202
               bridge_domain: 10.1.202.0_24
