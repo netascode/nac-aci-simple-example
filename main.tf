@@ -2,7 +2,6 @@ terraform {
   required_providers {
     aci = {
       source  = "CiscoDevNet/aci"
-      version = ">= 2.6.0"
     }
   }
 }
@@ -13,15 +12,16 @@ provider "aci" {
   url      = "https://apic.url"
 }
 
-locals {
-  model = yamldecode(file("${path.module}/data/tenant_DEV.yaml"))
-}
+module "aci" {
+  source  = "netascode/nac-aci/aci"
+  version = "0.7.0"
 
-module "tenant" {
-  source  = "netascode/nac-tenant/aci"
-  version = "0.4.2"
+  yaml_directories = ["data"]
 
-  for_each    = { for tenant in try(local.model.apic.tenants, []) : tenant.name => tenant }
-  model       = local.model
-  tenant_name = each.value.name
+  manage_access_policies    = false
+  manage_fabric_policies    = false
+  manage_pod_policies       = false
+  manage_node_policies      = false
+  manage_interface_policies = false
+  manage_tenants            = true
 }
