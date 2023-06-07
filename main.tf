@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aci = {
-      source  = "CiscoDevNet/aci"
+      source = "CiscoDevNet/aci"
     }
   }
 }
